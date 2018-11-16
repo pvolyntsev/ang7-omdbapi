@@ -3,9 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatSidenavModule,
+  MatInputModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatFormFieldModule, MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { VideosComponent } from './videos/videos.component';
@@ -18,18 +22,20 @@ import { VideoComponent } from './video/video.component';
     VideoComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatSidenavModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule,
+    MatToolbarModule,
     MatFormFieldModule,
     MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
-    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
