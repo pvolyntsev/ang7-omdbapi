@@ -26,3 +26,56 @@
   <div>Page size: {{pageEvent.pageSize}}</div>
   <div>Page index: {{pageEvent.pageIndex}}</div>
 </div>
+<mat-sidenav-container fullscreen>
+
+  <mat-toolbar class="toolbar-search md-hue-1">
+
+    <mat-form-field>
+      <mat-label>Movie name</mat-label>
+      <input matInput
+             [(ngModel)]="searchFilter.movie"
+             (keyup.enter)="onSearchFormSubmit()"
+             placeholder="Movie name">
+    </mat-form-field>
+
+    <button mat-icon-button aria-label="Search" (click)="onSearchFormSubmit()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-progress-bar
+    mode="determinate"
+    *ngIf="fetching"
+    [value]="fetchingProgress"></mat-progress-bar>
+
+  <div class="card-columns" *ngIf="loaded" >
+    <div class="card" *ngFor="let video of videosList">
+
+      <div *ngIf="video.placeholder" class="card-placeholder">
+        <span>
+          <span class="card-img-top"></span>
+        </span>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+
+      <div *ngIf="!video.placeholder">
+        <a routerLink="/view/{{video.imdbID}}">
+          <img class="card-img-top" src="{{video.Poster}}" alt="{{video.Title}}">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{video.Title}}</h5>
+          <p class="card-text">{{video.Year}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="movieSearch.Error" class="alert alert-danger" role="alert">
+    {{movieSearch.Error}}
+  </div>
+
+</mat-sidenav-container>
+
