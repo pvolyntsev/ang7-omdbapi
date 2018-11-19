@@ -1,3 +1,3 @@
 export class MovieSearchFilter {
-  movie: string;
+  public movie: String = '';
 }

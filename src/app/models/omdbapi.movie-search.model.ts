@@ -1,7 +1,8 @@
 import { OmdbapiMovie } from './omdbapi.movie.model';
 
 export class OmdbapiMovieSearch {
-    search: OmdbapiMovie[];
-    response: boolean;
-    totalResults: number;
+  public Search: OmdbapiMovie[] = [];
+  public Response: Boolean = false;
+  public totalResults: Number = 0;
+  public Error: String = '';
 }

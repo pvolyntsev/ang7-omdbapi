@@ -1,3 +1,3 @@
 export class Pagination {
-  pageIndex: number;
+  public pageIndex: Number = 1;
 }

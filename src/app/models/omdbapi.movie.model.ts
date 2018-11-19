@@ -1,10 +1,15 @@
 export class OmdbapiMovie {
-    title: string;
-    year: number;
-    rated: string;
-    language: string;
-    country: string;
-    poster: URL;
-    plot: string;
-    imdbID: string;
+  Title: string;
+  Year: number;
+  Rated: string;
+  Language: string;
+  Country: string;
+  Poster: URL;
+  Plot: string;
+  ImdbID: string;
+  placeholder: boolean;
+
+  constructor(placeholder) {
+    this.placeholder = placeholder || false;
+  }
 }
