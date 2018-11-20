@@ -1,3 +1,11 @@
 export class Pagination {
-  public pageIndex: Number = 1;
+  public length: Number = 0;
+  public pageSize: Number = 10;
+  public pageIndex: Number = 0;
+
+  public reset(): void {
+    this.length = 0;
+    this.pageSize = 10;
+    this.pageIndex = 0;
+  }
 }

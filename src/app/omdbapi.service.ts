@@ -19,7 +19,7 @@ export class OmdbapiService {
       apikey: this.apikey,
       type: 'movie',
       s: filter.movie,
-      page: pagination.pageIndex,
+      page: 1 + pagination.pageIndex,
     };
     let params = new HttpParams();
     Object.keys(options).forEach((p, i) => {

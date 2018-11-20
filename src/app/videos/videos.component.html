@@ -1,31 +1,3 @@
-<mat-form-field>
-  List length:
-  <input matInput [(ngModel)]="length">
-</mat-form-field>
-
-<mat-form-field>
-  Page size:
-  <input matInput [(ngModel)]="pageSize">
-</mat-form-field>
-<mat-form-field>
-  Page size options:
-  <input matInput
-         [ngModel]="pageSizeOptions"
-         (ngModelChange)="setPageSizeOptions($event)">
-</mat-form-field>
-
-<mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event">
-</mat-paginator>
-
-<div *ngIf="pageEvent">
-  <h5>Page Change Event Properties</h5>
-  <div>List length: {{pageEvent.length}}</div>
-  <div>Page size: {{pageEvent.pageSize}}</div>
-  <div>Page index: {{pageEvent.pageIndex}}</div>
-</div>
 <mat-sidenav-container fullscreen>
 
   <mat-toolbar class="toolbar-search md-hue-1">
@@ -34,11 +6,11 @@
       <mat-label>Movie name</mat-label>
       <input matInput
              [(ngModel)]="searchFilter.movie"
-             (keyup.enter)="onSearchFormSubmit()"
+             (keyup.enter)="pagination.reset(); onSearchFormSubmit()"
              placeholder="Movie name">
     </mat-form-field>
 
-    <button mat-icon-button aria-label="Search" (click)="onSearchFormSubmit()">
+    <button mat-icon-button aria-label="Search" (click)="pagination.reset(); onSearchFormSubmit()">
       <mat-icon>search</mat-icon>
     </button>
   </mat-toolbar>
@@ -47,6 +19,14 @@
     mode="determinate"
     *ngIf="fetching"
     [value]="fetchingProgress"></mat-progress-bar>
+
+  <mat-paginator
+    [length]="pagination.length"
+    hidePageSize="true"
+    [pageIndex]="pagination.pageIndex"
+    [pageSize]="pagination.pageSize"
+    (page)="onPageChange($event)">
+  </mat-paginator>
 
   <mat-action-list>
     <mat-list-item *ngFor="let video of videosList">

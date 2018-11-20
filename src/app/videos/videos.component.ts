@@ -25,23 +25,24 @@ export class VideosComponent implements OnInit {
   fetching: Boolean = false;
   fetchingProgress: Number = 0;
 
-  // MatPaginator Inputs
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-
-  // MatPaginator Output
-  pageEvent: PageEvent;
-
   constructor(private omdbapiService: OmdbapiService,
               private cache: Cache,
               private router: Router) { }
 
   ngOnInit() {
+    const movie = this.cache.get('searchFilter:movie');
+    const pageIndex = this.cache.get('pagination:pageIndex');
+
+    if (movie !== null && pageIndex !== null) {
+      this.pagination.pageIndex = 1 * pageIndex;
+      this.searchFilter.movie = movie.toString();
+      this.onSearchFormSubmit();
+    }
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  onPageChange(event: PageEvent) {
+    this.pagination.pageIndex = event.pageIndex;
+    this.onSearchFormSubmit();
   }
 
   onSearchFormSubmit(): void {
@@ -71,9 +72,12 @@ export class VideosComponent implements OnInit {
   private onSearchVideosSuccess(movieSearch: OmdbapiMovieSearch): void {
     const key = JSON.stringify([this.searchFilter, this.pagination]);
     this.cache.set(key, movieSearch, 3600);
+    this.cache.set('searchFilter:movie', this.searchFilter.movie);
+    this.cache.set('pagination:pageIndex', this.pagination.pageIndex);
 
     this.movieSearch = movieSearch;
     this.videosList = this.movieSearch.Search;
+    this.pagination.length = this.movieSearch.totalResults;
 
     this.fetchingProgress = 100;
     setTimeout(() => {
