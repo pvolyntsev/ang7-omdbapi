@@ -13,7 +13,7 @@
     *ngIf="fetching"
     [value]="fetchingProgress"></mat-progress-bar>
 
-  <mat-card *ngIf="!video.placeholder" class="example-card">
+  <mat-card *ngIf="loaded">
     <mat-card-header>
       <mat-card-title>{{video.Year}}, {{video.Country}}</mat-card-title>
       <mat-card-subtitle *ngIf="video.Genre">{{video.Genre}}</mat-card-subtitle>
