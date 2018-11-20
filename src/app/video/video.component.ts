@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { OmdbapiService } from '../omdbapi.service';
 import { OmdbapiMovie } from '../models/omdbapi.movie.model';
+import { Cache } from '../cache/local-storage';
 
 @Component({
   selector: 'app-video',
@@ -22,6 +23,7 @@ export class VideoComponent implements OnInit {
 
   constructor(private omdbapiService: OmdbapiService,
               private router: Router,
+              private cache: Cache,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,6 +33,13 @@ export class VideoComponent implements OnInit {
   getVideo(): void {
     this.fetching = true;
     const id = this.route.snapshot.paramMap.get('id');
+
+    const key = JSON.stringify(id);
+    const cached = this.cache.get(key);
+    if (cached !== null) {
+      return this.onGetVideoSuccess(cached as OmdbapiMovie);
+    }
+
     this.omdbapiService
       .findOneByImdbId(id)
       .subscribe(
@@ -40,6 +49,10 @@ export class VideoComponent implements OnInit {
   }
 
   private onGetVideoSuccess(movie: OmdbapiMovie): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    const key = JSON.stringify([id]);
+    this.cache.set(key, movie, 3600);
+
     this.video = movie;
 
     this.fetchingProgress = 100;

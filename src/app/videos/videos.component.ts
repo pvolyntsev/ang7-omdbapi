@@ -7,6 +7,7 @@ import { OmdbapiService } from '../omdbapi.service';
 import { OmdbapiMovieSearch } from '../models/omdbapi.movie-search.model';
 import { OmdbapiMovie } from '../models/omdbapi.movie.model';
 import { Pagination } from '../models/pagination.model';
+import { Cache } from '../cache/local-storage';
 
 @Component({
   selector: 'app-videos',
@@ -34,6 +35,7 @@ export class VideosComponent implements OnInit {
   pageEvent: PageEvent;
 
   constructor(private omdbapiService: OmdbapiService,
+              private cache: Cache,
               private router: Router) { }
 
   ngOnInit() {
@@ -53,6 +55,12 @@ export class VideosComponent implements OnInit {
     this.fetching = true;
     this.fetchingProgress = 25;
 
+    const key = JSON.stringify([this.searchFilter, this.pagination]);
+    const cached = this.cache.get(key);
+    if (cached !== null) {
+      return this.onSearchVideosSuccess(cached as OmdbapiMovieSearch);
+    }
+
     this.omdbapiService
       .findAll(this.searchFilter, this.pagination)
       .subscribe(
@@ -62,6 +70,9 @@ export class VideosComponent implements OnInit {
   }
 
   private onSearchVideosSuccess(movieSearch: OmdbapiMovieSearch): void {
+    const key = JSON.stringify([this.searchFilter, this.pagination]);
+    this.cache.set(key, movieSearch, 3600);
+
     this.movieSearch = movieSearch;
     this.videosList = this.movieSearch.Search;
 
