@@ -24,7 +24,6 @@ export class VideosComponent implements OnInit {
   // MatProgressBar
   fetching: Boolean = false;
   fetchingProgress: Number = 0;
-  fetchingError: Object;
 
   // MatPaginator Inputs
   length = 100;

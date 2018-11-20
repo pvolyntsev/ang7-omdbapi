@@ -19,7 +19,6 @@ export class VideoComponent implements OnInit {
   // MatProgressBar
   fetching: Boolean = false;
   fetchingProgress: Number = 0;
-  fetchingError: Object;
 
   constructor(private omdbapiService: OmdbapiService,
               private router: Router,
