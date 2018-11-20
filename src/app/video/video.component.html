@@ -1,6 +1,11 @@
 <mat-sidenav-container fullscreen>
   <mat-toolbar class="toolbar-search md-hue-1">
-    {{video.Title}}
+    <button mat-icon-button aria-label="Back to list" (click)="router.navigateByUrl('/')">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <span *ngIf="loaded">{{video.Title}}</span>
+    <span *ngIf="!loaded">...</span>
   </mat-toolbar>
 
   <mat-progress-bar

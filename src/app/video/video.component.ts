@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { OmdbapiService } from '../omdbapi.service';
 import { OmdbapiMovie } from '../models/omdbapi.movie.model';
@@ -21,6 +21,7 @@ export class VideoComponent implements OnInit {
   fetchingError: Object;
 
   constructor(private omdbapiService: OmdbapiService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
