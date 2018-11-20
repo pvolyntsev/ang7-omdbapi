@@ -1,43 +1,1 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import {
-  MatSidenavModule,
-  MatInputModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatFormFieldModule, MatPaginatorModule } from '@angular/material';
-
-import { AppComponent } from './app.component';
-import { VideosComponent } from './videos/videos.component';
-import { VideoComponent } from './video/video.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    VideosComponent,
-    VideoComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-  ],
-  exports: [
-    MatButtonModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+import { BrowserModule } from '@angular/platform-browser';import { NgModule } from '@angular/core';import { HttpClientModule } from '@angular/common/http';import { BrowserAnimationsModule } from '@angular/platform-browser/animations';import { FormsModule } from '@angular/forms';import {  MatSidenavModule,  MatInputModule,  MatButtonModule,  MatToolbarModule,  MatIconModule,  MatProgressBarModule,  MatListModule,  MatCardModule,  MatFormFieldModule, MatPaginatorModule } from '@angular/material';// modulesimport { AppRoutingModule } from './app-routing/app-routing.module';// componentsimport { AppComponent } from './app.component';import { VideosComponent } from './videos/videos.component';import { VideoComponent } from './video/video.component';// providersimport { OmdbapiService } from './omdbapi.service';@NgModule({  declarations: [    AppComponent,    VideosComponent,    VideoComponent  ],  imports: [    AppRoutingModule,    HttpClientModule,    BrowserModule,    BrowserAnimationsModule,    FormsModule,    MatSidenavModule,    MatIconModule,    MatProgressBarModule,    MatCardModule,    MatListModule,    MatInputModule,    MatButtonModule,    MatToolbarModule,    MatFormFieldModule,    MatPaginatorModule,  ],  exports: [  ],  providers: [    OmdbapiService,  ],  bootstrap: [AppComponent]})export class AppModule { }

@@ -1,25 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpParams } from '@angular/common/http';
-
 import { OmdbapiMovieSearch } from './models/omdbapi.movie-search.model';
+import { OmdbapiMovie } from './models/omdbapi.movie.model';
 import { MovieSearchFilter } from './models/movie-search-filter.model';
 import { Pagination } from './models/pagination.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class OmdbapiService {
 
-  endpoint = 'https://www.omdbapi.com/';
+  apikey: String;
+  endpoint: String = 'https://www.omdbapi.com/';
 
   constructor(private http: HttpClient) { }
 
-  search(filter: MovieSearchFilter, pagination: Pagination): Observable<OmdbapiMovieSearch> {
-    const page = pagination.pageIndex;
-    const options = { ...filter, page };
-    const params = new HttpParams();
-    Object.keys(options).forEach((param, index) => params.set(param, options[param]));
+  findAll(filter: MovieSearchFilter, pagination: Pagination): Observable<OmdbapiMovieSearch> {
+    const options = {
+      apikey: this.apikey,
+      type: 'movie',
+      s: filter.movie,
+      page: pagination.pageIndex,
+    };
+    let params = new HttpParams();
+    Object.keys(options).forEach((p, i) => {
+      params = params.set(p, options[p]);
+    });
     return this.http.get<OmdbapiMovieSearch>(this.endpoint, { params });
+  }
+
+  findOneByImdbId(id: String): Observable<OmdbapiMovie> {
+    const options = {
+      apikey: this.apikey,
+      type: 'movie',
+      i: id,
+    };
+    let params = new HttpParams();
+    Object.keys(options).forEach((p, i) => {
+      params = params.set(p, options[p]);
+    });
+    return this.http.get<OmdbapiMovie>(this.endpoint, { params });
   }
 }

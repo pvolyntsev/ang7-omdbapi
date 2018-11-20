@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { MovieSearchFilter } from '../models/movie-search-filter.model';
 import { OmdbapiService } from '../omdbapi.service';
 import { OmdbapiMovieSearch } from '../models/omdbapi.movie-search.model';
 import { OmdbapiMovie } from '../models/omdbapi.movie.model';
 import { Pagination } from '../models/pagination.model';
-import { HttpErrorResponse } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-videos',
@@ -19,6 +19,8 @@ export class VideosComponent implements OnInit {
   pagination: Pagination = new Pagination();
   videosList: OmdbapiMovie[];
   loaded: Boolean = false;
+
+  // MatProgressBar
   fetching: Boolean = false;
   fetchingProgress: Number = 0;
   fetchingError: Object;
@@ -31,7 +33,8 @@ export class VideosComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent;
 
-  constructor(private omdbapiService: OmdbapiService) { }
+  constructor(private omdbapiService: OmdbapiService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -51,7 +54,7 @@ export class VideosComponent implements OnInit {
     this.fetchingProgress = 25;
 
     this.omdbapiService
-      .search(this.searchFilter, this.pagination)
+      .findAll(this.searchFilter, this.pagination)
       .subscribe(
         this.onSearchVideosSuccess.bind(this),
         this.onSearchVideosError.bind(this)

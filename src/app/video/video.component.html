@@ -1,3 +1,24 @@
-<p>
-  video works!
-</p>
+<mat-sidenav-container fullscreen>
+  <mat-toolbar class="toolbar-search md-hue-1">
+    {{video.Title}}
+  </mat-toolbar>
+
+  <mat-progress-bar
+    mode="determinate"
+    *ngIf="fetching"
+    [value]="fetchingProgress"></mat-progress-bar>
+
+  <mat-card *ngIf="!video.placeholder" class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{video.Year}}, {{video.Country}}</mat-card-title>
+      <mat-card-subtitle *ngIf="video.Genre">{{video.Genre}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{video.Poster}}" alt="{{video.Title}}">
+    <mat-card-content>
+      <!--<pre>{{ video | json }}</pre>-->
+      <p *ngIf="video.Plot">{{video.Plot}}</p>
+      <p *ngIf="video.Actors">Actors: <span>{{video.Actors}}</span></p>
+    </mat-card-content>
+  </mat-card>
+
+</mat-sidenav-container>
