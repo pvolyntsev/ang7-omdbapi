@@ -7,7 +7,7 @@ import { OmdbapiMovie } from '../models/omdbapi.movie.model';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css']
+  styleUrls: ['./video.component.less']
 })
 export class VideoComponent implements OnInit {
   video: OmdbapiMovie;
