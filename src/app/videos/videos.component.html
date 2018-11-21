@@ -35,7 +35,8 @@
 
   <mat-action-list>
     <mat-list-item *ngFor="let video of videosList" (click)="router.navigateByUrl('/view/' + video.imdbID)">
-      <img matListAvatar src="{{video.Poster}}" alt="{{video.Title}}">
+      <img matListAvatar *ngIf="video.Poster !== 'N\/A'" src="{{video.Poster}}" alt="{{video.Title}}">
+      <span matListAvatar *ngIf="video.Poster === 'N\/A'" class="mat-list-avatar-dummy"></span>
       <h3 matLine><a routerLink="/view/{{video.imdbID}}">{{video.Title}}</a></h3>
       <p matLine>
         <a routerLink="/view/{{video.imdbID}}"><span>{{video.Year}}</span></a>

@@ -29,7 +29,7 @@
       <mat-card-title>{{video.Year}}, {{video.Country}}</mat-card-title>
       <mat-card-subtitle *ngIf="video.Genre">{{video.Genre}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{video.Poster}}" alt="{{video.Title}}">
+    <img mat-card-image *ngIf="video.Poster !== 'N\/A'" src="{{video.Poster}}" alt="{{video.Title}}">
     <mat-card-content>
       <!--<pre>{{ video | json }}</pre>-->
       <p *ngIf="video.Plot">{{video.Plot}}</p>
