@@ -32,8 +32,8 @@
     <img mat-card-image *ngIf="video.Poster !== 'N\/A'" src="{{video.Poster}}" alt="{{video.Title}}">
     <mat-card-content>
       <!--<pre>{{ video | json }}</pre>-->
-      <p *ngIf="video.Plot">{{video.Plot}}</p>
-      <p *ngIf="video.Actors">Actors: <span>{{video.Actors}}</span></p>
+      <p *ngIf="video.Plot && video.Plot !== 'N\/A'">{{video.Plot}}</p>
+      <p *ngIf="video.Actors && video.Actors !== 'N\/A'">Actors: <span>{{video.Actors}}</span></p>
     </mat-card-content>
   </mat-card>
 
