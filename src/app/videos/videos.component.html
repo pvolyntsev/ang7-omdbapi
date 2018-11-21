@@ -39,10 +39,10 @@
       <p matLine>
         <a routerLink="/view/{{video.imdbID}}"><span>{{video.Year}}</span></a>
       </p>
-      <button mat-icon-button *ngIf="!chosen.has(video)" (click)="chosen.add(video)">
+      <button mat-icon-button *ngIf="!chosen.has(video)" appClickStopPropagation (click)="chosen.add(video)">
         <mat-icon>check_box_outline_blank</mat-icon>
       </button>
-      <button mat-icon-button *ngIf="chosen.has(video)" (click)="chosen.remove(video)">
+      <button mat-icon-button *ngIf="chosen.has(video)" appClickStopPropagation (click)="chosen.remove(video)">
         <mat-icon>playlist_add_check</mat-icon>
       </button>
 
