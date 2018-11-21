@@ -77,6 +77,10 @@ export class VideoComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
+  goChosen(): void {
+    this.router.navigateByUrl('/chosen');
+  }
+
   isChosen(movie: OmdbapiMovie): Boolean {
     return this.chosen.has(movie);
   }
