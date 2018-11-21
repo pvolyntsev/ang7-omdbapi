@@ -51,7 +51,7 @@ export class VideoComponent implements OnInit {
 
   private onGetVideoSuccess(movie: OmdbapiMovie): void {
     const id = this.route.snapshot.paramMap.get('id');
-    const key = JSON.stringify([id]);
+    const key = JSON.stringify(id);
     this.cache.set(key, movie, 3600);
 
     this.video = movie;
