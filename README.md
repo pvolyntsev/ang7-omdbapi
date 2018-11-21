@@ -6,6 +6,12 @@
 
 This project was generated with [Angular CLI](https://cli.angular.io/)
 
+Require:
+* node
+* npm
+
+Use instructions at [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
 ```
 npm install -g @angular/cli
 npm install
