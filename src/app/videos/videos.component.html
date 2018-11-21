@@ -25,6 +25,7 @@
     [value]="fetchingProgress"></mat-progress-bar>
 
   <mat-paginator
+    *ngIf="pagination.length > pagination.pageSize"
     [length]="pagination.length"
     hidePageSize="true"
     [pageIndex]="pagination.pageIndex"
@@ -49,9 +50,14 @@
     </mat-list-item>
   </mat-action-list>
 
-  <div *ngIf="movieSearch.Error" class="alert alert-danger" role="alert">
-    {{movieSearch.Error}}
-  </div>
+  <mat-card *ngIf="movieSearch.Error" class="mat-card-error">
+    <mat-card-header>
+      <mat-card-title>Error</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{movieSearch.Error}}</p>
+    </mat-card-content>
+  </mat-card>
 
 </mat-sidenav-container>
 

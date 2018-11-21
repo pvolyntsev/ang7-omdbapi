@@ -9,6 +9,7 @@
   </mat-toolbar>
 
   <mat-paginator
+    *ngIf="pagination.length > pagination.pageSize"
     [length]="pagination.length"
     hidePageSize="true"
     [pageIndex]="pagination.pageIndex"
