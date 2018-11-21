@@ -58,7 +58,9 @@ export class VideoComponent implements OnInit {
 
     this.fetchingProgress = 100;
     setTimeout(() => {
-      this.loaded = true;
+      this.error = this.video.Error || '';
+
+      this.loaded = !this.video.Error;
       this.fetching = false;
     }, 250);
   }

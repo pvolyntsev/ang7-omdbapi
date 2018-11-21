@@ -29,4 +29,5 @@ export class OmdbapiMovie {
   Production: String; // 'Summit Entertainment'
   Website: URL; // 'http://red-themovie.com/'
   Response: Boolean;
+  Error: String;
 }
