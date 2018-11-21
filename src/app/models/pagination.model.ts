@@ -1,7 +1,7 @@
 export class Pagination {
-  public length: Number = 0;
-  public pageSize: Number = 10;
-  public pageIndex: Number = 0;
+  public length = 0;
+  public pageSize = 10;
+  public pageIndex = 0;
 
   public reset(): void {
     this.length = 0;

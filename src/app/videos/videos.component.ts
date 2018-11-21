@@ -36,7 +36,7 @@ export class VideosComponent implements OnInit {
     const pageIndex = this.cache.get('pagination:pageIndex');
 
     if (movie !== null && pageIndex !== null) {
-      this.pagination.pageIndex = 1 * pageIndex;
+      this.pagination.pageIndex = parseInt(pageIndex as string, 10);
       this.searchFilter.movie = movie.toString();
       this.onSearchFormSubmit();
     }

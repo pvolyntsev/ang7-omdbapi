@@ -9,8 +9,8 @@ import { Pagination } from './models/pagination.model';
 @Injectable()
 export class OmdbapiService {
 
-  apikey: String;
-  endpoint: String = 'https://www.omdbapi.com/';
+  apikey = '';
+  endpoint = 'https://www.omdbapi.com/';
 
   constructor(private http: HttpClient) { }
 
