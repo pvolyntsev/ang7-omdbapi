@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { OmdbapiService } from '../omdbapi.service';
 import { OmdbapiMovie } from '../models/omdbapi.movie.model';
 import { Cache } from '../cache/local-storage';
+import { ChosenVideosService } from '../chosen-videos/chosen-videos.service';
 
 @Component({
   selector: 'app-video',
@@ -21,6 +22,7 @@ export class VideoComponent implements OnInit {
   fetchingProgress: Number = 0;
 
   constructor(private omdbapiService: OmdbapiService,
+              private chosen: ChosenVideosService,
               private router: Router,
               private cache: Cache,
               private route: ActivatedRoute) { }

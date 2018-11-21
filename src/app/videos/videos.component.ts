@@ -8,6 +8,7 @@ import { OmdbapiMovieSearch } from '../models/omdbapi.movie-search.model';
 import { OmdbapiMovie } from '../models/omdbapi.movie.model';
 import { Pagination } from '../models/pagination.model';
 import { Cache } from '../cache/local-storage';
+import { ChosenVideosService } from '../chosen-videos/chosen-videos.service';
 
 @Component({
   selector: 'app-videos',
@@ -26,6 +27,7 @@ export class VideosComponent implements OnInit {
   fetchingProgress: Number = 0;
 
   constructor(private omdbapiService: OmdbapiService,
+              private chosen: ChosenVideosService,
               private cache: Cache,
               private router: Router) { }
 

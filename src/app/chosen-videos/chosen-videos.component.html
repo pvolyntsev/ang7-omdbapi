@@ -1,0 +1,33 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-toolbar class="toolbar-search md-hue-1">
+    <button mat-icon-button aria-label="Back to list" (click)="router.navigateByUrl('/')">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <span>Chosen videos</span>
+  </mat-toolbar>
+
+  <mat-paginator
+    [length]="pagination.length"
+    hidePageSize="true"
+    [pageIndex]="pagination.pageIndex"
+    [pageSize]="pagination.pageSize"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
+  <mat-action-list>
+    <mat-list-item *ngFor="let video of videosList">
+      <img matListAvatar src="{{video.Poster}}" alt="{{video.Title}}" (click)="router.navigateByUrl('/view/' + video.imdbID)">
+      <h3 matLine><a routerLink="/view/{{video.imdbID}}">{{video.Title}}</a></h3>
+      <p matLine>
+        <a routerLink="/view/{{video.imdbID}}"><span>{{video.Year}}</span></a>
+      </p>
+      <button mat-icon-button *ngIf="chosen.has(video)" (click)="chosen.remove(video)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-action-list>
+
+</mat-sidenav-container>
+

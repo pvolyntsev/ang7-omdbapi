@@ -4,8 +4,19 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
 
-    <span *ngIf="loaded">{{video.Title}}</span>
-    <span *ngIf="!loaded">...</span>
+    <span class="toolbar-spacer" *ngIf="loaded">{{video.Title}}</span>
+    <span class="toolbar-spacer" *ngIf="!loaded">...</span>
+
+    <button mat-icon-button *ngIf="loaded && !chosen.has(video)" (click)="chosen.add(video)">
+      <mat-icon>check_box_outline_blank</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="loaded && chosen.has(video)" (click)="chosen.remove(video)">
+      <mat-icon>playlist_add_check</mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Chosen videos" (click)="router.navigateByUrl('/chosen')">
+      <mat-icon>list</mat-icon>
+    </button>
   </mat-toolbar>
 
   <mat-progress-bar

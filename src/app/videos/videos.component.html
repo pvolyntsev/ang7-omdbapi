@@ -13,6 +13,10 @@
     <button mat-icon-button aria-label="Search" (click)="pagination.reset(); onSearchFormSubmit()">
       <mat-icon>search</mat-icon>
     </button>
+
+    <button mat-icon-button aria-label="Chosen videos" (click)="router.navigateByUrl('/chosen')">
+      <mat-icon>list</mat-icon>
+    </button>
   </mat-toolbar>
 
   <mat-progress-bar
@@ -29,12 +33,19 @@
   </mat-paginator>
 
   <mat-action-list>
-    <mat-list-item *ngFor="let video of videosList">
-      <img matListAvatar src="{{video.Poster}}" alt="{{video.Title}}" (click)="router.navigateByUrl('/view/' + video.imdbID)">
+    <mat-list-item *ngFor="let video of videosList" (click)="router.navigateByUrl('/view/' + video.imdbID)">
+      <img matListAvatar src="{{video.Poster}}" alt="{{video.Title}}">
       <h3 matLine><a routerLink="/view/{{video.imdbID}}">{{video.Title}}</a></h3>
       <p matLine>
         <a routerLink="/view/{{video.imdbID}}"><span>{{video.Year}}</span></a>
       </p>
+      <button mat-icon-button *ngIf="!chosen.has(video)" (click)="chosen.add(video)">
+        <mat-icon>check_box_outline_blank</mat-icon>
+      </button>
+      <button mat-icon-button *ngIf="chosen.has(video)" (click)="chosen.remove(video)">
+        <mat-icon>playlist_add_check</mat-icon>
+      </button>
+
     </mat-list-item>
   </mat-action-list>
 
