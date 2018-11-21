@@ -18,6 +18,7 @@ export class Cache {
       if (expiration === null || expirationDt > nowDt) {
         return value;
       }
+      localStorage.removeItem(key);
     }
     return null;
   }
