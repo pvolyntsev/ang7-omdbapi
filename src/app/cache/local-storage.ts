@@ -3,9 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Cache {
 
-  set(key: string, value: Object, ttl: Number = null): void {
+  set(key: string, value: Object, ttl: number = null): void {
     const now = new Date();
-    const expiration = ttl === null ? null : new Date(now.getTime() + ttl * 1000).getTime();
+    let expiration = null;
+    if (ttl !== null) {
+      expiration = new Date(now.getTime() + 1000 * ttl).getTime();
+    }
     localStorage.setItem(key, JSON.stringify([value, expiration]));
   }
 
