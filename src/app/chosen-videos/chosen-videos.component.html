@@ -23,7 +23,7 @@
       <p matLine>
         <a routerLink="/view/{{video.imdbID}}"><span>{{video.Year}}</span></a>
       </p>
-      <button mat-icon-button *ngIf="chosen.has(video)" appClickStopPropagation (click)="chosen.remove(video)">
+      <button mat-icon-button *ngIf="isChosen(video)" appClickStopPropagation (click)="removeFromChosen(video)">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-list-item>

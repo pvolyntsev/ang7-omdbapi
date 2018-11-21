@@ -32,4 +32,12 @@ export class ChosenVideosComponent implements OnInit {
   onPageChange(event: PageEvent) {
     this.pagination.pageIndex = event.pageIndex;
   }
+
+  isChosen(movie: OmdbapiMovie): Boolean {
+    return this.chosen.has(movie);
+  }
+
+  removeFromChosen(movie: OmdbapiMovie): void {
+    this.chosen.remove(movie);
+  }
 }

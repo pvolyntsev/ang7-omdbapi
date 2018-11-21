@@ -7,10 +7,10 @@
     <span class="toolbar-spacer" *ngIf="loaded">{{video.Title}}</span>
     <span class="toolbar-spacer" *ngIf="!loaded">...</span>
 
-    <button mat-icon-button *ngIf="loaded && !chosen.has(video)" (click)="chosen.add(video)">
+    <button mat-icon-button *ngIf="loaded && !isChosen(video)" (click)="addToChosen(video)">
       <mat-icon>check_box_outline_blank</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="loaded && chosen.has(video)" (click)="chosen.remove(video)">
+    <button mat-icon-button *ngIf="loaded && isChosen(video)" (click)="removeFromChosen(video)">
       <mat-icon>playlist_add_check</mat-icon>
     </button>
 

@@ -95,4 +95,16 @@ export class VideosComponent implements OnInit {
     this.movieSearch = new OmdbapiMovieSearch();
     this.movieSearch.Error = error.toString();
   }
+
+  isChosen(movie: OmdbapiMovie): Boolean {
+    return this.chosen.has(movie);
+  }
+
+  addToChosen(movie: OmdbapiMovie): void {
+    this.chosen.add(movie);
+  }
+
+  removeFromChosen(movie: OmdbapiMovie): void {
+    this.chosen.remove(movie);
+  }
 }
