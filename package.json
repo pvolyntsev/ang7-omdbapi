@@ -1,14 +1,18 @@
 {
-  "name": "ang5-omdbapi",
-  "version": "0.0.0",
+  "name": "ang7-omdbapi",
+  "version": "0.0.1",
+  "description": "Без описания",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
+  "keywords": [
+    "video",
+    "angular 7"
+  ],
+  "author": "Pavel Volyntsev <pavel.volyntsev@gmail.com>",
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.0.4",
