@@ -96,6 +96,14 @@ export class VideosComponent implements OnInit {
     this.movieSearch.Error = error.toString();
   }
 
+  goChosen(): void {
+    this.router.navigateByUrl('/chosen');
+  }
+
+  goVideoDetails(movie: OmdbapiMovie): void {
+    this.router.navigateByUrl('/view/' + movie.imdbID);
+  }
+
   isChosen(movie: OmdbapiMovie): Boolean {
     return this.chosen.has(movie);
   }

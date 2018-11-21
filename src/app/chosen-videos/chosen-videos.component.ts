@@ -29,6 +29,14 @@ export class ChosenVideosComponent implements OnInit {
   ngOnInit() {
   }
 
+  goHome(): void {
+    this.router.navigateByUrl('/');
+  }
+
+  goVideoDetails(movie: OmdbapiMovie): void {
+    this.router.navigateByUrl('/view/' + movie.imdbID);
+  }
+
   onPageChange(event: PageEvent) {
     this.pagination.pageIndex = event.pageIndex;
   }

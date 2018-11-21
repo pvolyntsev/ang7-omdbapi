@@ -73,6 +73,10 @@ export class VideoComponent implements OnInit {
     this.error = error.toString();
   }
 
+  goHome(): void {
+    this.router.navigateByUrl('/');
+  }
+
   isChosen(movie: OmdbapiMovie): Boolean {
     return this.chosen.has(movie);
   }
