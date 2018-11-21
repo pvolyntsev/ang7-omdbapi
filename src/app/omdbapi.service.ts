@@ -5,6 +5,7 @@ import { OmdbapiMovieSearch } from './models/omdbapi.movie-search.model';
 import { OmdbapiMovie } from './models/omdbapi.movie.model';
 import { MovieSearchFilter } from './models/movie-search-filter.model';
 import { Pagination } from './models/pagination.model';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class OmdbapiService {
@@ -12,7 +13,9 @@ export class OmdbapiService {
   apikey = '';
   endpoint = 'https://www.omdbapi.com/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.apikey = environment['OmdbapiService:apikey'];
+  }
 
   findAll(filter: MovieSearchFilter, pagination: Pagination): Observable<OmdbapiMovieSearch> {
     const options = {
